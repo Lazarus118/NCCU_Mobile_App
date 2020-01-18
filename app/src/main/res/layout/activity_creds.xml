@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    android:orientation="vertical"
+    tools:context=".CredsActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_creds"
+        android:padding="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Manage your Login information"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="#666666" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Note: Your Username and Password will be stored on your device"
+        android:textSize="10sp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textColor="#666666" />
+
+    <TextView
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="USERNAME:"
+        android:textColor="#666666" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:drawableEnd="@drawable/ic_edit"
+            android:drawableRight="@drawable/ic_edit"
+            android:padding="10dp"
+            android:id="@+id/username"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            android:hint="..."
+            android:imeOptions="actionSend"
+            android:inputType="text"
+            android:textColorHint="#666666"
+            android:theme="@android:style/Theme.Holo.Light" />
+
+        <ImageView
+            android:id="@+id/usernameCopy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_copy"
+            android:padding="10dp"
+            android:layout_toRightOf="@+id/username"/>
+
+    </RelativeLayout>
+
+
+
+    <TextView
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PASSWORD:"
+        android:textColor="#666666" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:drawableEnd="@drawable/ic_edit"
+            android:drawableRight="@drawable/ic_edit"
+            android:padding="10dp"
+            android:id="@+id/password"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            android:hint="..."
+            android:imeOptions="actionSend"
+            android:inputType="textPassword"
+            android:textColorHint="#666666"
+            android:theme="@android:style/Theme.Holo.Light" />
+
+        <ImageView
+            android:id="@+id/passwordCopy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_copy"
+            android:padding="10dp"
+            android:layout_toRightOf="@+id/password"/>
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/accessAcct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#8bcc96"
+        android:text="GO TO ACCOUNT"
+        android:layout_margin="20dp"
+        android:layout_alignParentBottom="true"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:textSize="25sp" />
+
+</LinearLayout>
