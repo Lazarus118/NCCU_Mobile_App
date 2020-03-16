@@ -8,14 +8,16 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:id="@+id/imageView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_margin="10dp"
         android:scaleType="fitXY"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/icon" />
 
     <Button
-        android:layout_above="@+id/accessAcct"
+        android:layout_below="@+id/imageView"
         android:id="@+id/accessCred"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +29,7 @@
         android:textSize="25sp" />
 
     <Button
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/accessCred"
         android:id="@+id/accessAcct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,5 +39,17 @@
         android:textStyle="bold"
         android:textColor="#ffffff"
         android:textSize="25sp" />
+
+    <com.google.android.gms.ads.AdView
+        android:layout_below="@+id/accessAcct"
+        android:layout_alignParentBottom="true"
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+    </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>
