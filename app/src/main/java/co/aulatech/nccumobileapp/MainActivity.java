@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.share_app) {
             String shareBody = Uri.parse(
-                    "Download the `NCCU Mobile App` on Google play >>>\n" +
+                    "Download the `NCCU Mobile App` on the Google play store >>>\n" +
                             "http://play.google.com/store/apps/details?id=" + this.getPackageName()).toString();
             Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");

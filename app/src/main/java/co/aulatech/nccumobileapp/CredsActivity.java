@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
+
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -21,13 +23,17 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import java.util.Random;
+
 public class CredsActivity extends AppCompatActivity {
     DBHelper dbHelper;
     Button accessAcct;
     public static String user_name = "null";
     public static String pwd = "null";
-    EditText u, p;
-    ImageView copyU, copyP;
+    EditText u, p, g;
+    ImageView copyU, copyP, copyGP, genBtn;
+    private static String NEWPWD = "";
+    private static final String ALLOWED_CHARACTERS = "0123456789qwertyuiopasdfghjklzxcvbnm";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +50,6 @@ public class CredsActivity extends AppCompatActivity {
         //////////////////////////////////////////////////////////////////
         dbHelper = new DBHelper(this);
         dbHelper.insert(user_name, pwd);
-
-        // DELETE LAST DB TABLE
-//        int id_record_from_3 = 3;
-//        Cursor cursor = dbHelper.getAllRecords();
-//        while (cursor.moveToNext()) {
-//            dbHelper.delete(id_record_from_3);
-//            id_record_from_3++;
-//            cursor.close();
-//        }
 
         // EditText
         //////////////////////////////////////////////////////////////////
@@ -80,13 +77,15 @@ public class CredsActivity extends AppCompatActivity {
             }
         });
 
+        g = findViewById(R.id.gen_password);
+
         // Copy
         //////////////////////////////////////////////////////////////////
         copyU = findViewById(R.id.usernameCopy);
         copyU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ClipboardManager clipboard = (ClipboardManager)  getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("USER", getUserFromDB());
                 clipboard.setPrimaryClip(clip);
 
@@ -98,11 +97,34 @@ public class CredsActivity extends AppCompatActivity {
         copyP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ClipboardManager clipboard = (ClipboardManager)  getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("PWD", getPWDFromDB());
                 clipboard.setPrimaryClip(clip);
 
                 Toast.makeText(getApplicationContext(), "Password Copied!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        copyGP = findViewById(R.id.gen_passwordCopy);
+        copyGP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("GEN_PWD", NEWPWD);
+                clipboard.setPrimaryClip(clip);
+
+                Toast.makeText(getApplicationContext(), "New Password Copied!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        // Generate password
+        //////////////////////////////////////////////////////////////////
+        genBtn = findViewById(R.id.gen_pwdBtn);
+        genBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NEWPWD = getRandomString(16);
+                g.setText(NEWPWD);
             }
         });
 
@@ -142,4 +164,17 @@ public class CredsActivity extends AppCompatActivity {
         }
         return pwd;
     }
+
+    // GET RANDOM PASSWORD
+    //////////////////////////////////////////////////////////////////
+    private String getRandomString(final int sizeOfPasswordString) {
+        final Random random = new Random();
+        final StringBuilder sb = new StringBuilder(sizeOfPasswordString);
+
+        for (int i = 0; i < sizeOfPasswordString; ++i) {
+            sb.append(ALLOWED_CHARACTERS.charAt(random.nextInt(ALLOWED_CHARACTERS.length())));
+        }
+        return sb.toString();
+    }
+
 }
