@@ -10,16 +10,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.ap.ApBanner;
+import com.ap.ApEventsListener;
+import com.ap.ApNotification;
+import com.ap.ApPreparedAd;
+import com.ap.ApSdk;
 
 public class MainActivity extends AppCompatActivity {
     Button accessAcct, accessCreds;
-    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,25 +48,40 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, CredsActivity.class));
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                }
             }
         });
 
-        // ADMOB INIT
+        // ADS INIT
         //////////////////////////////////////////////////////////////////
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+        ApSdk.init(getApplicationContext(), "1598056954399274887", "co.aulatech.nccumobileapp");
+        ApNotification.start(this);
+        ApSdk.enableTestMode();
+        ApBanner banner = findViewById(R.id.container);
+        banner.setEventsListener(new ApEventsListener() {
             @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            public void onLoaded(ApPreparedAd ad) {
+                ad.show();
+            }
+            @Override
+            public void onFailed(String reason) {
+            }
+            @Override
+            public void onClicked() {
+            }
+            @Override
+            public void onOpened() {
+            }
+            @Override
+            public void onClosed() {
+            }
+            @Override
+            public void onLeaveApplication() {
             }
         });
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-1845124451993707/8063306518");
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        //If you need custom banner size, you can use next method
+        //banner.setSize(320, 50);
+        banner.load();
+
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////

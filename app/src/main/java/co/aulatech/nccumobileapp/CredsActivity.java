@@ -7,10 +7,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
-
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -19,10 +17,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
 import java.util.Random;
 
 public class CredsActivity extends AppCompatActivity {
@@ -39,12 +33,6 @@ public class CredsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creds);
-
-        // ADVIEW
-        //////////////////////////////////////////////////////////////////
-        AdView mAdView = findViewById(R.id.adView2);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
 
         // Init Database
         //////////////////////////////////////////////////////////////////

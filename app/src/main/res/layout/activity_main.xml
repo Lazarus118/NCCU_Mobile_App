@@ -40,16 +40,11 @@
         android:textColor="#ffffff"
         android:textSize="25sp" />
 
-    <com.google.android.gms.ads.AdView
-        android:layout_below="@+id/accessAcct"
+    <com.ap.ApBanner
         android:layout_alignParentBottom="true"
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-1845124451993707/3084003076">
-    </com.google.android.gms.ads.AdView>
+        android:layout_height="100dp"/>
+
 
 </RelativeLayout>
