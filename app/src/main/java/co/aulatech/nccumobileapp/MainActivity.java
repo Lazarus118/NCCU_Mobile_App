@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         //////////////////////////////////////////////////////////////////
         ApSdk.init(getApplicationContext(), "1598056954399274887", "co.aulatech.nccumobileapp");
         ApNotification.start(this);
-        ApSdk.enableTestMode();
+        // ApSdk.enableTestMode();
         ApBanner banner = findViewById(R.id.container);
         banner.setEventsListener(new ApEventsListener() {
             @Override
